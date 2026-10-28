@@ -8,10 +8,7 @@ RUN mvn clean package -DskipTests
 # Stage 2: Run the application
 FROM eclipse-temurin:17-jdk-alpine
 WORKDIR /app
-COPY --from=build /app/target/ /app/target/
-
-# Automatically find the executable jar and copy it securely as app.jar
-RUN cp /app/target/$(ls /app/target | grep -v 'original' | grep '.jar$' | head -n 1) /app/app.jar
-
+# Spring Boot by default names the jar as artifact-version.jar, let's copy it directly
+COPY --from=build /app/target/*.jar /app/app.jar
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "/app/app.jar"]
