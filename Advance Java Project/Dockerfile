@@ -8,6 +8,6 @@ RUN mvn clean package -DskipTests
 # Stage 2: Run the application
 FROM eclipse-temurin:17-jdk-alpine
 WORKDIR /app
-COPY --from=build /app/target/*.jar app.jar
+COPY --from=build /app/target /app/target
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["sh", "-c", "java -jar target/$(ls target/ | grep -v 'original' | grep '.jar$')"]
