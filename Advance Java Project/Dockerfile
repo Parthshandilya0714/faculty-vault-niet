@@ -8,7 +8,7 @@ RUN mvn clean package -DskipTests
 # Stage 2: Run the application
 FROM eclipse-temurin:17-jdk-alpine
 WORKDIR /app
-# Copy the built jar file and rename it explicitly to app.jar
-COPY --from=build /app/target/*.jar app.jar
+# Copy only the executable jar (excluding the .original file)
+COPY --from=build /app/target/*-SNAPSHOT.jar app.jar
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]
