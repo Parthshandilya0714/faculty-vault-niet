@@ -10,4 +10,4 @@ FROM eclipse-temurin:17-jdk-alpine
 WORKDIR /app
 COPY --from=build /app/target/faculty-vault-1.0.0.war app.war
 EXPOSE 8080
-ENTRYPOINT ["java", "-Dspring.datasource.url=jdbc:postgresql://db.pluvntupezycmtalkvop.supabase.co:5432/postgres", "-Dspring.datasource.username=postgres", "-Dspring.datasource.password=Palak@071407", "-Dspring.datasource.driver-class-name=org.postgresql.Driver", "-jar", "app.war"]
+ENTRYPOINT ["java", "-jar", "app.war"]
