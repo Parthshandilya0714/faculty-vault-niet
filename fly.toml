@@ -10,8 +10,8 @@ primary_region = 'iad'
   auto_start_machines = true
   min_machines_running = 0
 
-[processes]
-  app = "java -Dserver.port=8080 -Dserver.address=0.0.0.0 -jar /app.war"
+[env]
+  SERVER_PORT = "8080"
 
 [[vm]]
   memory = '1gb'
